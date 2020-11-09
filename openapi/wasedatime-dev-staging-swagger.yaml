@@ -1,0 +1,324 @@
+---
+swagger: "2.0"
+info:
+  version: "2020-11-09T14:10:46Z"
+  title: "wasedatime-dev"
+host: "api.wasedatime.com"
+basePath: "/staging"
+schemes:
+- "https"
+paths:
+  /career:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /course-reviews:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "ReviewsReq"
+        required: true
+        schema:
+          $ref: "#/definitions/ReviewsReq"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ReviewsResp"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/Error"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Max-Age:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /feeds:
+    get:
+      produces:
+      - "application/xml"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /feeds/{proxy+}:
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+    x-amazon-apigateway-any-method:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "proxy"
+        in: "path"
+        required: true
+        type: "string"
+      responses: {}
+  /syllabus:
+    get:
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /syllabus/{item}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "item"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Cache-Control:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            ETag:
+              type: "string"
+            Last-Modified:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+definitions:
+  Empty:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+      message:
+        type: "string"
+    title: "Error Schema"
+  Error:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+      message:
+        type: "string"
+    title: "Error Schema"
+  ReviewsReq:
+    type: "object"
+    required:
+    - "course_keys"
+    properties:
+      course_keys:
+        type: "array"
+        items:
+          type: "string"
+  ReviewsResp:
+    type: "object"
+    required:
+    - "data"
+    - "message"
+    - "success"
+    properties:
+      success:
+        type: "boolean"
+      data:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            course_key:
+              type: "string"
+            comments:
+              type: "array"
+              items:
+                type: "object"
+                properties:
+                  title_jp:
+                    type: "string"
+                  instructor_jp:
+                    type: "string"
+                  course_code:
+                    type: "string"
+                  timestamp:
+                    type: "string"
+                  benefit:
+                    type: "number"
+                  difficulty:
+                    type: "number"
+                  satisfaction:
+                    type: "number"
+                  instructor:
+                    type: "string"
+                  comment_zh_CN:
+                    type: "string"
+                  comment_en:
+                    type: "string"
+                  year:
+                    type: "number"
+                  comment_src_lng:
+                    type: "number"
+                  comment_jp:
+                    type: "string"
+                  course_key:
+                    type: "string"
+                  id:
+                    type: "string"
+                  comment_zh_TW:
+                    type: "string"
+                  title:
+                    type: "string"
+                required:
+                - "benefit"
+                - "comment_en"
+                - "comment_jp"
+                - "comment_src_lng"
+                - "comment_zh_CN"
+                - "comment_zh_TW"
+                - "course_code"
+                - "course_key"
+                - "difficulty"
+                - "id"
+                - "instructor"
+                - "instructor_jp"
+                - "satisfaction"
+                - "timestamp"
+                - "title"
+                - "title_jp"
+                - "year"
+          required:
+          - "comments"
+          - "course_key"
+      message:
+        type: "string"

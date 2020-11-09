@@ -1,0 +1,22 @@
+openapi: "3.0.1"
+info:
+  title: "wasedatime-prod"
+  version: "2020-10-29 15:40:46UTC"
+servers:
+- url: "https://api.wasedatime.com/v1/{basePath}"
+  variables:
+    basePath:
+      default: "prod"
+tags:
+- name: "name"
+paths:
+  /syllabus:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /syllabus"
+  /course-reviews:
+    post:
+      responses:
+        default:
+          description: "Default response for POST /course-reviews"
