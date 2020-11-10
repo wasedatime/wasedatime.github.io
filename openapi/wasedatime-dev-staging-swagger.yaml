@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-10T03:57:39Z"
+  version: "2020-11-10T04:02:38Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -706,5 +706,5 @@ definitions:
           - "Owner"
           - "Size"
           - "StorageClass"
-    title: "The root schema"
-    description: "The root schema comprises the entire JSON document."
+    title: "ArticleList"
+    description: "The list of resources."
