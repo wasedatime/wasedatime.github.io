@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-10T03:23:03Z"
+  version: "2020-11-10T03:44:19Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -326,10 +326,316 @@ definitions:
     title: "The root schema"
     type: "array"
     description: "The root schema comprises the entire JSON document."
+    items:
+      type: "object"
+      description: "The schema of each course in the array."
+      title: "Items"
+      properties:
+        a:
+          type: "string"
+          description: "Course key of the course."
+          title: "Course Key"
+        b:
+          type: "string"
+          description: "Course title in English."
+          title: "Title"
+        c:
+          type: "string"
+          description: "Course title in Japanese."
+          title: "Title JP"
+        d:
+          type: "string"
+          description: "Instructor's name in English."
+          title: "Instructor"
+        e:
+          type: "string"
+          description: "Instructor's name in Japanese."
+          title: "Instructor JP"
+        f:
+          type: "array"
+          description: "Languages in which the course is taught."
+          title: "Langauges"
+          items:
+            type: "integer"
+            description: "-1 N/A | 0 Japanese | 1 English | 2 German | 3 French |\
+              \ 4 Chinese | 5 Spanish | 6 Korean | 7 Russia | 8 Italian | 9 other"
+            title: "Language"
+        g:
+          type: "integer"
+          description: "Type of the course\n-1 N/A | 0 Lecture | 1 Seminar | 2 Work\
+            \ | 3 Foreign Langauge | 4 On-demand | 5 Thesis | 6 Graduate Research\
+            \ | 7 Practice | 8 Blended"
+          title: "Type"
+        h:
+          type: "string"
+          description: "The term in which the course is taught.\nseason := 0 Spring\
+            \ | 1 Summer | 2 Fall | 3 Winter\nperiod := 's' Semester| 'q' Quarter\
+            \ | 'i' Intensive Course | 'f' Full Year | 't' Term\ndelimiter := '/'\
+            \ or | '&' and"
+          title: "Term"
+          enum:
+          - "0s"
+          - "2s"
+          - "0q"
+          - "1q"
+          - "2q"
+          - "3q"
+          - "f"
+          - "0"
+          - "1"
+          - "2"
+          - "3"
+          - "0i"
+          - "2i"
+          - "0t"
+          - "2t"
+          - "3t"
+          - "0t/1t"
+          - "0s/2s"
+          - "2t/3t"
+          - "1&2s"
+          - "0s&1"
+          - "f/2s"
+          - "0i&3i"
+        i:
+          type: "array"
+          description: "The schedules and locations of the course."
+          title: "Occurrences"
+          items:
+            type: "object"
+            description: "Schedule and location"
+            title: "Occurrence"
+            properties:
+              d:
+                type: "integer"
+                description: "The day on which the course is taught.\n-1 others |\
+                  \ 0 Mon | 1 Tues | 2 Wed | 3 Thur | 4 Fri | 5 Sat | 6 Sun"
+                title: "Day"
+              p:
+                type: "integer"
+                description: "The period on which the course is taught.\nstart_period\
+                  \ := -1 others | 0 On-demand | 1 .. 9\n end_period := start_period "
+                title: "Period"
+              l:
+                type: "string"
+                description: "The location where the course takes place."
+                title: "Loction"
+            required:
+            - "d"
+            - "l"
+            - "p"
+        j:
+          type: "integer"
+          description: "Minimum eligible year.\n-1 unknown | 1 .. 4"
+          title: "Minimum Eligible Year"
+        k:
+          type: "string"
+          description: "The category the course falls in."
+          title: "Category"
+        l:
+          type: "integer"
+          description: "The credit of the course.\n -1 unknown | 0 .."
+          title: "Credit"
+        m:
+          type: "integer"
+          description: "The level/difficulty of the course.\n-1 N/A | 0 Beginner |\
+            \ 1 Intermediate | 2 Advanced | 3 Final-stage | 4 Master | 5 Doctor"
+          title: "Level"
+        n:
+          type: "array"
+          description: "The distribution of evaluation criterion and their descriptions"
+          title: "Evaluations"
+          items:
+            type: "object"
+            description: "Criteria and description"
+            title: "Evaluation"
+            properties:
+              t:
+                type: "integer"
+                description: "Type of the evaluation\n-1 Unknown | 0 Exam | 1 Papers\
+                  \ | 2 Class Participation | 3 Others"
+                title: "Type"
+              p:
+                type: "integer"
+                description: "The percentage of this criteria in evaluation."
+                title: "Percentage"
+              c:
+                type: "string"
+                description: "An explanation about the criteria."
+                title: "Comment"
+            required:
+            - "c"
+            - "p"
+            - "t"
+        o:
+          type: "string"
+          description: "Course code"
+          title: "Code"
+        p:
+          type: "string"
+          description: "Subtitle of the course (mostly seen in seminar courses)"
+          title: "Subtitle"
+      required:
+      - "a"
+      - "b"
+      - "c"
+      - "d"
+      - "e"
+      - "f"
+      - "g"
+      - "h"
+      - "i"
+      - "j"
+      - "k"
+      - "l"
+      - "m"
+      - "n"
+      - "o"
+      - "p"
   SyllabusAll:
     title: "The root schema"
     type: "array"
     description: "The root schema comprises the entire JSON document."
+    items:
+      type: "object"
+      description: "Schema of each course in the array."
+      title: "The first anyOf schema"
+      properties:
+        _id:
+          type: "string"
+          description: "Course key"
+          title: "ID"
+        c:
+          type: "string"
+          description: "Course Code"
+          title: "Course Code"
+        e:
+          type: "boolean"
+          description: "Whether or not the course has an evaluation."
+          title: "Evaluation Enabled"
+        i:
+          type: "string"
+          description: "Instructor name in English."
+          title: "Instructor"
+        ij:
+          type: "string"
+          description: "Instructor name in Japanese."
+          title: "Instructor JP"
+        ks:
+          type: "array"
+          description: "Course keys"
+          title: "Keys"
+          items:
+            type: "object"
+            description: "Schema of each school and course key pair."
+            title: "The first anyOf schema"
+            properties:
+              s:
+                type: "string"
+                description: "School name abbr."
+                title: "School"
+              k:
+                type: "string"
+                description: "Course key"
+                title: "Key"
+            required:
+            - "k"
+            - "s"
+        l:
+          type: "string"
+          description: "The language in which the course is taught."
+          title: "Language"
+          enum:
+          - "JP"
+          - "EN"
+          - "others"
+        os:
+          type: "array"
+          description: "Schedule and location of the course."
+          title: "Occurrences"
+          items:
+            type: "object"
+            description: "Schema of each occurrence in the array."
+            title: "The first anyOf schema"
+            properties:
+              d:
+                type: "integer"
+                description: "The day on which the course is taught."
+                title: "Day"
+              s:
+                type: "integer"
+                description: "Start period in minutes."
+                title: "Start Period"
+              e:
+                type: "integer"
+                description: "End period in minutes."
+                title: "End Period"
+              b:
+                type: "string"
+                description: "The building no. in which the course is taught."
+                title: "Building"
+              c:
+                type: "string"
+                description: "The classroom no. in which the course is taught."
+                title: "Classroom"
+              l:
+                type: "string"
+                description: "The location where the course is taught"
+                title: "Location"
+            required:
+            - "b"
+            - "c"
+            - "d"
+            - "e"
+            - "l"
+            - "s"
+        t:
+          type: "string"
+          description: "Course title in English."
+          title: "Title"
+        tj:
+          type: "string"
+          description: "Course title in Japanese."
+          title: "Title JP"
+        tm:
+          type: "string"
+          description: "The term/semester in which the course is taught."
+          title: "Term"
+          enum:
+          - "springSem"
+          - "fallSem"
+          - "springQuart"
+          - "summerQuart"
+          - "fallQuart"
+          - "winterQuart"
+          - "fullYear"
+          - "intensiveSpringSem"
+          - "intensiveFallSem"
+          - "intensiveSpringFallSem"
+          - "intensiveSpring"
+          - "intensiveSummer"
+          - "intensiveFall"
+          - "intensiveWinter"
+          - "springSummer"
+          - "fallWinter"
+          - "undecided"
+        y:
+          type: "integer"
+          description: "The year in which the course is taught."
+          title: "Year"
+      required:
+      - "_id"
+      - "c"
+      - "e"
+      - "i"
+      - "ij"
+      - "ks"
+      - "l"
+      - "os"
+      - "t"
+      - "tj"
+      - "tm"
+      - "y"
   ArticleList:
     type: "object"
     required:
@@ -354,5 +660,53 @@ definitions:
         type: "array"
         description: "An explanation about the purpose of this instance."
         title: "The Contents schema"
+        items:
+          type: "object"
+          description: "An explanation about the purpose of this instance."
+          title: "The first anyOf schema"
+          properties:
+            Key:
+              type: "string"
+              description: "An explanation about the purpose of this instance."
+              title: "The Key schema"
+            LastModified:
+              type: "string"
+              description: "An explanation about the purpose of this instance."
+              title: "The LastModified schema"
+            ETag:
+              type: "string"
+              description: "An explanation about the purpose of this instance."
+              title: "The ETag schema"
+            Size:
+              type: "string"
+              description: "An explanation about the purpose of this instance."
+              title: "The Size schema"
+            Owner:
+              type: "object"
+              description: "An explanation about the purpose of this instance."
+              title: "The Owner schema"
+              properties:
+                ID:
+                  type: "string"
+                  description: "An explanation about the purpose of this instance."
+                  title: "The ID schema"
+                DisplayName:
+                  type: "string"
+                  description: "An explanation about the purpose of this instance."
+                  title: "The DisplayName schema"
+              required:
+              - "DisplayName"
+              - "ID"
+            StorageClass:
+              type: "string"
+              description: "An explanation about the purpose of this instance."
+              title: "The StorageClass schema"
+          required:
+          - "ETag"
+          - "Key"
+          - "LastModified"
+          - "Owner"
+          - "Size"
+          - "StorageClass"
     title: "The root schema"
     description: "The root schema comprises the entire JSON document."
