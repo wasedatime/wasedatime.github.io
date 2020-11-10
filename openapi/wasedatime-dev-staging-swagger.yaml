@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-09T14:10:46Z"
+  version: "2020-11-10T03:23:03Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -101,7 +101,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/ArticleList"
           headers:
             Access-Control-Allow-Origin:
               type: "string"
@@ -157,7 +157,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/SyllabusAll"
           headers:
             Access-Control-Allow-Origin:
               type: "string"
@@ -191,7 +191,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/Syllabus"
           headers:
             Cache-Control:
               type: "string"
@@ -322,3 +322,37 @@ definitions:
           - "course_key"
       message:
         type: "string"
+  Syllabus:
+    title: "The root schema"
+    type: "array"
+    description: "The root schema comprises the entire JSON document."
+  SyllabusAll:
+    title: "The root schema"
+    type: "array"
+    description: "The root schema comprises the entire JSON document."
+  ArticleList:
+    type: "object"
+    required:
+    - "Contents"
+    - "IsTruncated"
+    - "MaxKeys"
+    - "Name"
+    properties:
+      Name:
+        type: "string"
+        description: "An explanation about the purpose of this instance."
+        title: "The Name schema"
+      MaxKeys:
+        type: "string"
+        description: "An explanation about the purpose of this instance."
+        title: "The MaxKeys schema"
+      IsTruncated:
+        type: "string"
+        description: "An explanation about the purpose of this instance."
+        title: "The IsTruncated schema"
+      Contents:
+        type: "array"
+        description: "An explanation about the purpose of this instance."
+        title: "The Contents schema"
+    title: "The root schema"
+    description: "The root schema comprises the entire JSON document."
