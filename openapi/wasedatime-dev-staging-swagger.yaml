@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-10T03:44:19Z"
+  version: "2020-11-10T03:57:39Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -84,6 +84,8 @@ paths:
       responses:
         200:
           description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
           headers:
             Access-Control-Allow-Origin:
               type: "string"
@@ -221,17 +223,13 @@ paths:
 definitions:
   Empty:
     type: "object"
-    properties:
-      success:
-        type: "boolean"
-      message:
-        type: "string"
-    title: "Error Schema"
+    title: "Empty"
   Error:
     type: "object"
     properties:
       success:
         type: "boolean"
+        default: false
       message:
         type: "string"
     title: "Error Schema"
@@ -323,9 +321,9 @@ definitions:
       message:
         type: "string"
   Syllabus:
-    title: "The root schema"
+    title: "Syllabus"
     type: "array"
-    description: "The root schema comprises the entire JSON document."
+    description: "The new syllabus JSON schema for each school."
     items:
       type: "object"
       description: "The schema of each course in the array."
@@ -493,9 +491,9 @@ definitions:
       - "o"
       - "p"
   SyllabusAll:
-    title: "The root schema"
+    title: "SyllabusAll"
     type: "array"
-    description: "The root schema comprises the entire JSON document."
+    description: "The old syllabus JSON schema."
     items:
       type: "object"
       description: "Schema of each course in the array."
