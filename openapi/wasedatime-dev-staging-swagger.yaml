@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-10T04:02:38Z"
+  version: "2020-11-11T05:37:50Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -637,74 +637,42 @@ definitions:
   ArticleList:
     type: "object"
     required:
-    - "Contents"
+    - "CommonPrefixes"
+    - "Delimiter"
     - "IsTruncated"
     - "MaxKeys"
     - "Name"
     properties:
       Name:
         type: "string"
-        description: "An explanation about the purpose of this instance."
-        title: "The Name schema"
+        description: "The name of the bucket."
+        title: "Name"
       MaxKeys:
         type: "string"
-        description: "An explanation about the purpose of this instance."
-        title: "The MaxKeys schema"
+        description: "The maximum number of object keys in the list"
+        title: "MaxKeys"
+      Delimiter:
+        type: "string"
+        description: ""
+        title: "Delimiter"
       IsTruncated:
         type: "string"
-        description: "An explanation about the purpose of this instance."
-        title: "The IsTruncated schema"
-      Contents:
+        description: ""
+        title: "IsTruncated"
+      CommonPrefixes:
         type: "array"
-        description: "An explanation about the purpose of this instance."
-        title: "The Contents schema"
+        description: "A list of articles"
+        title: "CommonPrefixes"
         items:
           type: "object"
-          description: "An explanation about the purpose of this instance."
-          title: "The first anyOf schema"
+          description: ""
+          title: "Items"
           properties:
-            Key:
+            Prefix:
               type: "string"
-              description: "An explanation about the purpose of this instance."
-              title: "The Key schema"
-            LastModified:
-              type: "string"
-              description: "An explanation about the purpose of this instance."
-              title: "The LastModified schema"
-            ETag:
-              type: "string"
-              description: "An explanation about the purpose of this instance."
-              title: "The ETag schema"
-            Size:
-              type: "string"
-              description: "An explanation about the purpose of this instance."
-              title: "The Size schema"
-            Owner:
-              type: "object"
-              description: "An explanation about the purpose of this instance."
-              title: "The Owner schema"
-              properties:
-                ID:
-                  type: "string"
-                  description: "An explanation about the purpose of this instance."
-                  title: "The ID schema"
-                DisplayName:
-                  type: "string"
-                  description: "An explanation about the purpose of this instance."
-                  title: "The DisplayName schema"
-              required:
-              - "DisplayName"
-              - "ID"
-            StorageClass:
-              type: "string"
-              description: "An explanation about the purpose of this instance."
-              title: "The StorageClass schema"
+              description: "The resource path of the article."
+              title: "Prefix"
           required:
-          - "ETag"
-          - "Key"
-          - "LastModified"
-          - "Owner"
-          - "Size"
-          - "StorageClass"
+          - "Prefix"
     title: "ArticleList"
-    description: "The list of resources."
+    description: "A list of articles in S3"
