@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-11T05:37:50Z"
+  version: "2020-11-14T16:34:13Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -150,7 +150,12 @@ paths:
         in: "path"
         required: true
         type: "string"
-      responses: {}
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
   /syllabus:
     get:
       produces:
@@ -183,7 +188,7 @@ paths:
   /syllabus/{item}:
     get:
       produces:
-      - "application/json"
+      - "application/json; charset=utf-8"
       parameters:
       - name: "item"
         in: "path"
@@ -200,6 +205,8 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
             ETag:
+              type: "string"
+            Expires:
               type: "string"
             Last-Modified:
               type: "string"
