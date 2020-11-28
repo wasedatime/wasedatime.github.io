@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-14T16:34:13Z"
+  version: "2020-11-28T09:46:48Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -19,9 +19,13 @@ paths:
         in: "query"
         required: true
         type: "string"
-      - name: "limit"
+      - name: "q"
         in: "query"
         required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
         type: "string"
       responses:
         200:
@@ -31,6 +35,169 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /career/intern:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ind"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "dl"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /career/part-time:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "loc"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "pay"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "dl"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "freq"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /career/seminar:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ind"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "duration"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "dl"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "major"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
     options:
       consumes:
       - "application/json"
@@ -154,7 +321,11 @@ paths:
         200:
           description: "200 response"
           headers:
+            Cache-Control:
+              type: "string"
             Access-Control-Allow-Origin:
+              type: "string"
+            Content-Type:
               type: "string"
   /syllabus:
     get:
