@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2020-11-28T09:46:48Z"
+  version: "2020-12-13T09:04:08Z"
   title: "wasedatime-dev"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -264,78 +264,22 @@ paths:
               type: "string"
   /feeds:
     get:
-      produces:
-      - "application/xml"
-      responses:
-        200:
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/ArticleList"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-    options:
       consumes:
       - "application/json"
-      produces:
-      - "application/json"
-      responses:
-        200:
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Access-Control-Allow-Headers:
-              type: "string"
-  /feeds/{proxy+}:
-    options:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      responses:
-        200:
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Access-Control-Allow-Headers:
-              type: "string"
-    x-amazon-apigateway-any-method:
       produces:
       - "application/json"
       parameters:
-      - name: "proxy"
-        in: "path"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
         required: true
         type: "string"
       responses:
         200:
           description: "200 response"
-          headers:
-            Cache-Control:
-              type: "string"
-            Access-Control-Allow-Origin:
-              type: "string"
-            Content-Type:
-              type: "string"
-  /syllabus:
-    get:
-      produces:
-      - "application/json"
-      responses:
-        200:
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/SyllabusAll"
           headers:
             Access-Control-Allow-Origin:
               type: "string"
@@ -651,6 +595,10 @@ definitions:
           type: "string"
           description: "Subtitle of the course (mostly seen in seminar courses)"
           title: "Subtitle"
+        q:
+          type: "string"
+          description: "The category the course falls in.(in Japanese)"
+          title: "CategoryJP"
       required:
       - "a"
       - "b"
@@ -668,189 +616,4 @@ definitions:
       - "n"
       - "o"
       - "p"
-  SyllabusAll:
-    title: "SyllabusAll"
-    type: "array"
-    description: "The old syllabus JSON schema."
-    items:
-      type: "object"
-      description: "Schema of each course in the array."
-      title: "The first anyOf schema"
-      properties:
-        _id:
-          type: "string"
-          description: "Course key"
-          title: "ID"
-        c:
-          type: "string"
-          description: "Course Code"
-          title: "Course Code"
-        e:
-          type: "boolean"
-          description: "Whether or not the course has an evaluation."
-          title: "Evaluation Enabled"
-        i:
-          type: "string"
-          description: "Instructor name in English."
-          title: "Instructor"
-        ij:
-          type: "string"
-          description: "Instructor name in Japanese."
-          title: "Instructor JP"
-        ks:
-          type: "array"
-          description: "Course keys"
-          title: "Keys"
-          items:
-            type: "object"
-            description: "Schema of each school and course key pair."
-            title: "The first anyOf schema"
-            properties:
-              s:
-                type: "string"
-                description: "School name abbr."
-                title: "School"
-              k:
-                type: "string"
-                description: "Course key"
-                title: "Key"
-            required:
-            - "k"
-            - "s"
-        l:
-          type: "string"
-          description: "The language in which the course is taught."
-          title: "Language"
-          enum:
-          - "JP"
-          - "EN"
-          - "others"
-        os:
-          type: "array"
-          description: "Schedule and location of the course."
-          title: "Occurrences"
-          items:
-            type: "object"
-            description: "Schema of each occurrence in the array."
-            title: "The first anyOf schema"
-            properties:
-              d:
-                type: "integer"
-                description: "The day on which the course is taught."
-                title: "Day"
-              s:
-                type: "integer"
-                description: "Start period in minutes."
-                title: "Start Period"
-              e:
-                type: "integer"
-                description: "End period in minutes."
-                title: "End Period"
-              b:
-                type: "string"
-                description: "The building no. in which the course is taught."
-                title: "Building"
-              c:
-                type: "string"
-                description: "The classroom no. in which the course is taught."
-                title: "Classroom"
-              l:
-                type: "string"
-                description: "The location where the course is taught"
-                title: "Location"
-            required:
-            - "b"
-            - "c"
-            - "d"
-            - "e"
-            - "l"
-            - "s"
-        t:
-          type: "string"
-          description: "Course title in English."
-          title: "Title"
-        tj:
-          type: "string"
-          description: "Course title in Japanese."
-          title: "Title JP"
-        tm:
-          type: "string"
-          description: "The term/semester in which the course is taught."
-          title: "Term"
-          enum:
-          - "springSem"
-          - "fallSem"
-          - "springQuart"
-          - "summerQuart"
-          - "fallQuart"
-          - "winterQuart"
-          - "fullYear"
-          - "intensiveSpringSem"
-          - "intensiveFallSem"
-          - "intensiveSpringFallSem"
-          - "intensiveSpring"
-          - "intensiveSummer"
-          - "intensiveFall"
-          - "intensiveWinter"
-          - "springSummer"
-          - "fallWinter"
-          - "undecided"
-        y:
-          type: "integer"
-          description: "The year in which the course is taught."
-          title: "Year"
-      required:
-      - "_id"
-      - "c"
-      - "e"
-      - "i"
-      - "ij"
-      - "ks"
-      - "l"
-      - "os"
-      - "t"
-      - "tj"
-      - "tm"
-      - "y"
-  ArticleList:
-    type: "object"
-    required:
-    - "CommonPrefixes"
-    - "Delimiter"
-    - "IsTruncated"
-    - "MaxKeys"
-    - "Name"
-    properties:
-      Name:
-        type: "string"
-        description: "The name of the bucket."
-        title: "Name"
-      MaxKeys:
-        type: "string"
-        description: "The maximum number of object keys in the list"
-        title: "MaxKeys"
-      Delimiter:
-        type: "string"
-        description: ""
-        title: "Delimiter"
-      IsTruncated:
-        type: "string"
-        description: ""
-        title: "IsTruncated"
-      CommonPrefixes:
-        type: "array"
-        description: "A list of articles"
-        title: "CommonPrefixes"
-        items:
-          type: "object"
-          description: ""
-          title: "Items"
-          properties:
-            Prefix:
-              type: "string"
-              description: "The resource path of the article."
-              title: "Prefix"
-          required:
-          - "Prefix"
-    title: "ArticleList"
-    description: "A list of articles in S3"
+      - "q"
