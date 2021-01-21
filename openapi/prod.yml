@@ -2,10 +2,10 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2021-01-08T03:28:09Z"
+  version: "2021-01-21T15:41:04Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
-basePath: "/v2"
+basePath: "/v1"
 schemes:
 - "https"
 paths:
@@ -359,6 +359,47 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
+  /syllabus:
+    get:
+      operationId: "GetCourses"
+      parameters:
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "id"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /syllabus/{school}:
     get:
       operationId: "GetSyllabusBySchool"
@@ -381,6 +422,8 @@ paths:
               type: "string"
             ETag:
               type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
             Expires:
               type: "string"
             Last-Modified:
@@ -401,6 +444,8 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
             ETag:
+              type: "string"
+            Access-Control-Allow-Methods:
               type: "string"
             Expires:
               type: "string"
@@ -496,6 +541,19 @@ paths:
               type: "string"
             Content-Type:
               type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /timetable/import:
     post:
       operationId: "ImportTimetable"
@@ -510,6 +568,19 @@ paths:
             Access-Control-Allow-Methods:
               type: "string"
             Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
               type: "string"
 securityDefinitions:
   cognito-authorizer:
