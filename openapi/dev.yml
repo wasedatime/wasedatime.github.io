@@ -2,13 +2,194 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2021-01-07T11:49:19Z"
+  version: "2021-01-21T13:27:03Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
 schemes:
 - "https"
 paths:
+  /career/intern:
+    get:
+      operationId: "GetInternInfo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ind"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "dl"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /career/part-time:
+    get:
+      operationId: "GetParttimeInfo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "loc"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "pay"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "dl"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "freq"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /career/seminar:
+    get:
+      operationId: "GetSeminarInfo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ind"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "duration"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "dl"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "major"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /course-reviews/{key}:
     get:
       operationId: "GetReviews"
@@ -178,6 +359,47 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
+  /syllabus:
+    get:
+      operationId: "GetCourses"
+      parameters:
+      - name: "offset"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "id"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "limit"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /syllabus/{school}:
     get:
       operationId: "GetSyllabusBySchool"
@@ -200,14 +422,14 @@ paths:
               type: "string"
             ETag:
               type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
             Expires:
               type: "string"
             Last-Modified:
               type: "string"
     head:
       operationId: "GetSyllabusMetadataBySchool"
-      produces:
-      - "application/json"
       parameters:
       - name: "school"
         in: "path"
@@ -216,14 +438,14 @@ paths:
       responses:
         200:
           description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
           headers:
             Cache-Control:
               type: "string"
             Access-Control-Allow-Origin:
               type: "string"
             ETag:
+              type: "string"
+            Access-Control-Allow-Methods:
               type: "string"
             Expires:
               type: "string"
@@ -304,6 +526,62 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
+  /timetable/export:
+    post:
+      operationId: "ExportTimetable"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /timetable/import:
+    post:
+      operationId: "ImportTimetable"
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        204:
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
 securityDefinitions:
   cognito-authorizer:
     type: "apiKey"
