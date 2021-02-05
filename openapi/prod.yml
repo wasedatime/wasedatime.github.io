@@ -38,7 +38,7 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/Empty"
@@ -55,7 +55,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -101,7 +101,7 @@ paths:
         required: false
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/Empty"
@@ -118,7 +118,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -164,7 +164,7 @@ paths:
         required: false
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/Empty"
@@ -181,7 +181,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -201,7 +201,7 @@ paths:
         required: false
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/GetReviewsResp"
@@ -225,7 +225,7 @@ paths:
         schema:
           $ref: "#/definitions/PostReviewReq"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -246,7 +246,7 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -263,7 +263,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -287,7 +287,7 @@ paths:
         schema:
           $ref: "#/definitions/PatchReviewReq"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -317,7 +317,7 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/GetFeedsResp"
@@ -335,7 +335,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -350,7 +350,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -376,7 +376,7 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -391,7 +391,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -411,7 +411,7 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/GetSyllabusResp"
@@ -436,7 +436,7 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Cache-Control:
@@ -455,7 +455,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -468,7 +468,7 @@ paths:
     get:
       operationId: "GetTimetable"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -484,7 +484,7 @@ paths:
     post:
       operationId: "PostTimetable"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -501,7 +501,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -513,7 +513,7 @@ paths:
     patch:
       operationId: "UpdateTimetable"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -530,7 +530,7 @@ paths:
     post:
       operationId: "ExportTimetable"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -545,7 +545,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
@@ -558,7 +558,7 @@ paths:
     post:
       operationId: "ImportTimetable"
       responses:
-        200:
+        "200":
           description: "200 response"
           headers:
             Referrer-Policy:
@@ -573,7 +573,7 @@ paths:
       consumes:
       - "application/json"
       responses:
-        204:
+        "204":
           description: "204 response"
           headers:
             Access-Control-Allow-Origin:
