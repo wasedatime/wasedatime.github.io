@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2021-02-10T11:10:09Z"
+  version: "2021-03-02T03:48:21Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -361,17 +361,9 @@ paths:
               type: "string"
   /syllabus:
     get:
-      operationId: "GetCourses"
+      operationId: "GetCourse"
       parameters:
-      - name: "offset"
-        in: "query"
-        required: true
-        type: "string"
       - name: "id"
-        in: "query"
-        required: false
-        type: "string"
-      - name: "limit"
         in: "query"
         required: true
         type: "string"
