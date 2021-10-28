@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2021-09-14T12:08:03Z"
+  version: "2021-10-28T15:39:46Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/v1"
@@ -200,6 +200,10 @@ paths:
         in: "query"
         required: false
         type: "string"
+      - name: "key"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         "200":
           description: "200 response"
@@ -219,6 +223,10 @@ paths:
       consumes:
       - "application/json"
       parameters:
+      - name: "key"
+        in: "path"
+        required: true
+        type: "string"
       - in: "body"
         name: "PostReviewReq"
         required: true
@@ -245,6 +253,10 @@ paths:
         in: "query"
         required: true
         type: "string"
+      - name: "key"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         "200":
           description: "200 response"
@@ -262,6 +274,11 @@ paths:
     options:
       consumes:
       - "application/json"
+      parameters:
+      - name: "key"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         "204":
           description: "204 response"
@@ -279,6 +296,10 @@ paths:
       parameters:
       - name: "ts"
         in: "query"
+        required: true
+        type: "string"
+      - name: "key"
+        in: "path"
         required: true
         type: "string"
       - in: "body"
@@ -491,6 +512,11 @@ paths:
     options:
       consumes:
       - "application/json"
+      parameters:
+      - name: "school"
+        in: "path"
+        required: true
+        type: "string"
       responses:
         "204":
           description: "204 response"
