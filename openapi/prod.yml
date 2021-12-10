@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2021-11-30T22:02:40Z"
+  version: "2021-12-10T08:55:05Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/v1"
