@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2022-02-23T15:35:18Z"
+  version: "2022-04-18T20:19:32Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/v1"
@@ -470,6 +470,22 @@ paths:
       - cognito-authorizer: []
     post:
       operationId: "PostTimetable"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    put:
+      operationId: "PutTimetable"
       responses:
         "200":
           description: "200 response"
