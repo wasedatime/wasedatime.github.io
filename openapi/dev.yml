@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2022-12-30T14:20:58Z"
+  version: "2022-12-31T14:36:29Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -321,16 +321,68 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
+  /forum:
+    get:
+      operationId: "GetAllThreads"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/GetThreadsResp"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    post:
+      operationId: "PostThread"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "PostThreadReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PostThreadReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /forum/{board_id}:
     get:
-      operationId: "GetThreads"
+      operationId: "GetBoardThreads"
       produces:
       - "application/json"
       parameters:
-      - name: "forum"
-        in: "path"
-        required: true
-        type: "string"
       - name: "board_id"
         in: "path"
         required: true
@@ -454,7 +506,7 @@ paths:
       - cognito-authorizer: []
   /forum/{board_id}/{thread_id}:
     get:
-      operationId: "GetThreads"
+      operationId: "GetSingleThread"
       produces:
       - "application/json"
       parameters:
@@ -480,6 +532,35 @@ paths:
               type: "string"
             Content-Type:
               type: "string"
+    delete:
+      operationId: "DeleteThread"
+      parameters:
+      - name: "ts"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
     options:
       consumes:
       - "application/json"
@@ -502,6 +583,42 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
+    patch:
+      operationId: "UpdateThread"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "ts"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "PatchThreadReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PatchThreadReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
   /syllabus:
     get:
       operationId: "GetCourse"
