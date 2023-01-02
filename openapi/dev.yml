@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2022-12-31T14:36:29Z"
+  version: "2023-01-02T07:20:00Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -377,6 +377,137 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
+  /forum-comment/{thread_id}:
+    get:
+      operationId: "GetComments"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uid"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/GetCommentsResp"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    post:
+      operationId: "PostComment"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "PostCommentReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PostCommentReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    delete:
+      operationId: "DeleteComment"
+      parameters:
+      - name: "ts"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    options:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+    patch:
+      operationId: "UpdateComment"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "ts"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "PatchCommentReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PatchCommentReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
   /forum/{board_id}:
     get:
       operationId: "GetBoardThreads"
@@ -429,31 +560,6 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
-    delete:
-      operationId: "DeleteThread"
-      parameters:
-      - name: "ts"
-        in: "query"
-        required: true
-        type: "string"
-      - name: "board_id"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          headers:
-            Referrer-Policy:
-              type: "string"
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Content-Type:
-              type: "string"
-      security:
-      - cognito-authorizer: []
     options:
       consumes:
       - "application/json"
@@ -472,38 +578,6 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
-    patch:
-      operationId: "UpdateThread"
-      consumes:
-      - "application/json"
-      parameters:
-      - name: "ts"
-        in: "query"
-        required: true
-        type: "string"
-      - name: "board_id"
-        in: "path"
-        required: true
-        type: "string"
-      - in: "body"
-        name: "PatchThreadReq"
-        required: true
-        schema:
-          $ref: "#/definitions/PatchThreadReq"
-      responses:
-        "200":
-          description: "200 response"
-          headers:
-            Referrer-Policy:
-              type: "string"
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Content-Type:
-              type: "string"
-      security:
-      - cognito-authorizer: []
   /forum/{board_id}/{thread_id}:
     get:
       operationId: "GetSingleThread"
@@ -834,6 +908,31 @@ securityDefinitions:
     in: "header"
     x-amazon-apigateway-authtype: "cognito_user_pools"
 definitions:
+  GetCommentsResp:
+    type: "object"
+    required:
+    - "data"
+    - "message"
+    properties:
+      data:
+        type: "object"
+        properties:
+          thread_id:
+            type: "string"
+          mod:
+            type: "boolean"
+          updated_at:
+            type: "string"
+          created_at:
+            type: "string"
+          body:
+            type: "string"
+        required:
+        - "body"
+        - "mod"
+        - "thread_id"
+      message:
+        type: "string"
   PatchReviewReq:
     type: "object"
     required:
@@ -1006,8 +1105,6 @@ definitions:
       data:
         type: "object"
         properties:
-          thread_id:
-            type: "string"
           group_id:
             type: "string"
           board_id:
@@ -1025,7 +1122,6 @@ definitions:
         - "body"
         - "group_id"
         - "tag_id"
-        - "thread_id"
         - "title"
         - "univ_id"
   GetSyllabusResp:
@@ -1239,3 +1335,33 @@ definitions:
         - "title"
         - "title_jp"
         - "year"
+  PatchCommentReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          thread_id:
+            type: "string"
+          body:
+            type: "string"
+        required:
+        - "body"
+        - "thread_id"
+  PostCommentReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          thread_id:
+            type: "string"
+          body:
+            type: "string"
+        required:
+        - "body"
+        - "thread_id"
