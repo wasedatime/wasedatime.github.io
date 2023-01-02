@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-01-02T07:20:00Z"
+  version: "2023-01-02T13:59:30Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -340,30 +340,6 @@ paths:
               type: "string"
             Content-Type:
               type: "string"
-    post:
-      operationId: "PostThread"
-      consumes:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "PostThreadReq"
-        required: true
-        schema:
-          $ref: "#/definitions/PostThreadReq"
-      responses:
-        "200":
-          description: "200 response"
-          headers:
-            Referrer-Policy:
-              type: "string"
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Content-Type:
-              type: "string"
-      security:
-      - cognito-authorizer: []
     options:
       consumes:
       - "application/json"
