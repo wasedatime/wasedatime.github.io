@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-04-27T11:21:01Z"
+  version: "2023-05-04T12:48:55Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -941,9 +941,7 @@ definitions:
       data:
         type: "object"
         properties:
-          thread_id:
-            type: "string"
-          board_id:
+          group_id:
             type: "string"
           tag_id:
             type: "string"
@@ -952,10 +950,9 @@ definitions:
           body:
             type: "string"
         required:
-        - "board_id"
         - "body"
+        - "group_id"
         - "tag_id"
-        - "thread_id"
         - "title"
   GetReviewsResp:
     type: "object"
@@ -1083,10 +1080,6 @@ definitions:
         properties:
           group_id:
             type: "string"
-          board_id:
-            type: "string"
-          univ_id:
-            type: "integer"
           tag_id:
             type: "string"
           title:
@@ -1094,12 +1087,10 @@ definitions:
           body:
             type: "string"
         required:
-        - "board_id"
         - "body"
         - "group_id"
         - "tag_id"
         - "title"
-        - "univ_id"
   GetSyllabusResp:
     title: "Syllabus"
     type: "array"
@@ -1319,13 +1310,10 @@ definitions:
       data:
         type: "object"
         properties:
-          thread_id:
-            type: "string"
           body:
             type: "string"
         required:
         - "body"
-        - "thread_id"
   PostCommentReq:
     type: "object"
     required:
@@ -1334,10 +1322,7 @@ definitions:
       data:
         type: "object"
         properties:
-          thread_id:
-            type: "string"
           body:
             type: "string"
         required:
         - "body"
-        - "thread_id"
