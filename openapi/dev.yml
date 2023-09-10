@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-09-09T16:29:11Z"
+  version: "2023-09-10T06:48:55Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -1039,7 +1039,7 @@ definitions:
             created_at:
               type: "string"
             tag_id:
-              type: "string"
+              type: "array"
             title:
               type: "string"
             body:
