@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-09-11T09:06:33Z"
+  version: "2023-09-11T11:19:16Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -928,6 +928,7 @@ definitions:
   PatchThreadReq:
     type: "object"
     required:
+    - "action"
     - "data"
     properties:
       data:
@@ -946,6 +947,12 @@ definitions:
         - "group_id"
         - "tag_id"
         - "title"
+      action:
+        type: "string"
+        enum:
+        - "update"
+        - "like"
+        - "dislike"
   GetReviewsResp:
     type: "object"
     required:
@@ -1024,10 +1031,18 @@ definitions:
         items:
           type: "object"
           properties:
-            thread_id:
-              type: "string"
             mod:
               type: "boolean"
+            created_at:
+              type: "string"
+            title:
+              type: "string"
+            body:
+              type: "string"
+            userLiked:
+              type: "boolean"
+            thread_id:
+              type: "string"
             updated_at:
               type: "string"
             group_id:
@@ -1036,14 +1051,10 @@ definitions:
               type: "string"
             univ_id:
               type: "integer"
-            created_at:
-              type: "string"
             tag_id:
               type: "array"
-            title:
-              type: "string"
-            body:
-              type: "string"
+            totalLikes:
+              type: "integer"
             views:
               type: "integer"
           required:
@@ -1055,8 +1066,10 @@ definitions:
           - "tag_id"
           - "thread_id"
           - "title"
+          - "totalLikes"
           - "univ_id"
           - "updated_at"
+          - "userLiked"
           - "views"
       success:
         type: "boolean"
