@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-09-12T11:42:27Z"
+  version: "2023-09-12T11:58:29Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -321,6 +321,38 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
+  /forum:
+    get:
+      operationId: "GetAllThreads"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/GetThreadsResp"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /forum-comment/{thread_id}:
     get:
       operationId: "GetComments"
@@ -438,6 +470,183 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/PatchCommentReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+  /forum/{board_id}:
+    get:
+      operationId: "GetBoardThreads"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/GetThreadsResp"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    post:
+      operationId: "PostThread"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "PostThreadReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PostThreadReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    options:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /forum/{board_id}/{thread_id}:
+    get:
+      operationId: "GetSingleThread"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/GetThreadsResp"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    delete:
+      operationId: "DeleteThread"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    options:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+    patch:
+      operationId: "UpdateThread"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "PatchThreadReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PatchThreadReq"
       responses:
         "200":
           description: "200 response"
@@ -716,6 +925,34 @@ definitions:
   Empty:
     type: "object"
     title: "Empty Schema"
+  PatchThreadReq:
+    type: "object"
+    required:
+    - "action"
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          group_id:
+            type: "string"
+          tag_id:
+            type: "string"
+          title:
+            type: "string"
+          body:
+            type: "string"
+        required:
+        - "body"
+        - "group_id"
+        - "tag_id"
+        - "title"
+      action:
+        type: "string"
+        enum:
+        - "update"
+        - "like"
+        - "dislike"
   GetReviewsResp:
     type: "object"
     required:
@@ -782,6 +1019,83 @@ definitions:
         type: "boolean"
       message:
         type: "string"
+  GetThreadsResp:
+    type: "object"
+    required:
+    - "data"
+    - "message"
+    - "success"
+    properties:
+      data:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            mod:
+              type: "boolean"
+            created_at:
+              type: "string"
+            title:
+              type: "string"
+            body:
+              type: "string"
+            userLiked:
+              type: "boolean"
+            thread_id:
+              type: "string"
+            updated_at:
+              type: "string"
+            group_id:
+              type: "string"
+            board_id:
+              type: "string"
+            univ_id:
+              type: "integer"
+            tag_id:
+              type: "array"
+            totalLikes:
+              type: "integer"
+            views:
+              type: "integer"
+          required:
+          - "board_id"
+          - "body"
+          - "created_at"
+          - "group_id"
+          - "mod"
+          - "tag_id"
+          - "thread_id"
+          - "title"
+          - "totalLikes"
+          - "univ_id"
+          - "updated_at"
+          - "userLiked"
+          - "views"
+      success:
+        type: "boolean"
+      message:
+        type: "string"
+  PostThreadReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          group_id:
+            type: "string"
+          tag_id:
+            type: "string"
+          title:
+            type: "string"
+          body:
+            type: "string"
+        required:
+        - "body"
+        - "group_id"
+        - "tag_id"
+        - "title"
   GetSyllabusResp:
     title: "Syllabus"
     type: "array"
