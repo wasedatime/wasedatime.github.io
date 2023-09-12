@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-06-02T11:39:41Z"
+  version: "2023-09-12T08:26:17Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/v1"
@@ -585,10 +585,6 @@ paths:
     delete:
       operationId: "DeleteThread"
       parameters:
-      - name: "ts"
-        in: "query"
-        required: true
-        type: "string"
       - name: "board_id"
         in: "path"
         required: true
@@ -638,10 +634,6 @@ paths:
       consumes:
       - "application/json"
       parameters:
-      - name: "ts"
-        in: "query"
-        required: true
-        type: "string"
       - name: "board_id"
         in: "path"
         required: true
@@ -936,6 +928,7 @@ definitions:
   PatchThreadReq:
     type: "object"
     required:
+    - "action"
     - "data"
     properties:
       data:
@@ -954,6 +947,12 @@ definitions:
         - "group_id"
         - "tag_id"
         - "title"
+      action:
+        type: "string"
+        enum:
+        - "update"
+        - "like"
+        - "dislike"
   GetReviewsResp:
     type: "object"
     required:
@@ -1032,10 +1031,18 @@ definitions:
         items:
           type: "object"
           properties:
-            thread_id:
-              type: "string"
             mod:
               type: "boolean"
+            created_at:
+              type: "string"
+            title:
+              type: "string"
+            body:
+              type: "string"
+            userLiked:
+              type: "boolean"
+            thread_id:
+              type: "string"
             updated_at:
               type: "string"
             group_id:
@@ -1044,14 +1051,10 @@ definitions:
               type: "string"
             univ_id:
               type: "integer"
-            created_at:
-              type: "string"
             tag_id:
-              type: "string"
-            title:
-              type: "string"
-            body:
-              type: "string"
+              type: "array"
+            totalLikes:
+              type: "integer"
             views:
               type: "integer"
           required:
@@ -1063,8 +1066,10 @@ definitions:
           - "tag_id"
           - "thread_id"
           - "title"
+          - "totalLikes"
           - "univ_id"
           - "updated_at"
+          - "userLiked"
           - "views"
       success:
         type: "boolean"
