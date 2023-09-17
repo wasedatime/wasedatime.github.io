@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-09-16T08:30:07Z"
+  version: "2023-09-17T12:48:47Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -953,6 +953,7 @@ definitions:
         - "update"
         - "like"
         - "dislike"
+        - "update_count"
   GetReviewsResp:
     type: "object"
     required:
@@ -1031,7 +1032,11 @@ definitions:
         items:
           type: "object"
           properties:
+            comment_count:
+              type: "integer"
             mod:
+              type: "boolean"
+            new_comment:
               type: "boolean"
             created_at:
               type: "string"
