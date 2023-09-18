@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-09-16T07:32:16Z"
+  version: "2023-09-18T19:26:41Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/v1"
@@ -484,21 +484,16 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
-  /forum/{board_id}:
+  /forum/user:
     get:
-      operationId: "GetBoardThreads"
+      operationId: "GetUserThreads"
       produces:
       - "application/json"
-      parameters:
-      - name: "board_id"
-        in: "path"
-        required: true
-        type: "string"
       responses:
         "200":
           description: "200 response"
           schema:
-            $ref: "#/definitions/GetThreadsResp"
+            $ref: "#/definitions/Empty"
           headers:
             Referrer-Policy:
               type: "string"
@@ -508,6 +503,22 @@ paths:
               type: "string"
             Content-Type:
               type: "string"
+      security:
+      - cognito-authorizer: []
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /forum/{board_id}:
     post:
       operationId: "PostThread"
       consumes:
@@ -953,6 +964,8 @@ definitions:
         - "update"
         - "like"
         - "dislike"
+        - "update_incr"
+        - "update_decr"
   GetReviewsResp:
     type: "object"
     required:
@@ -1031,7 +1044,11 @@ definitions:
         items:
           type: "object"
           properties:
+            comment_count:
+              type: "integer"
             mod:
+              type: "boolean"
+            new_comment:
               type: "boolean"
             created_at:
               type: "string"
