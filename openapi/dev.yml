@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-09-22T14:03:12Z"
+  version: "2023-09-24T06:11:01Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -484,6 +484,20 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
+  /forum/test:
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /forum/user:
     get:
       operationId: "GetUserThreads"
@@ -593,6 +607,31 @@ paths:
               type: "string"
             Content-Type:
               type: "string"
+    post:
+      operationId: "testThread"
+      parameters:
+      - name: "board_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "thread_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
     delete:
       operationId: "DeleteThread"
       parameters:
