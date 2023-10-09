@@ -2,13 +2,41 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-10-06T14:29:02Z"
+  version: "2023-10-09T15:27:17Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
 schemes:
 - "https"
 paths:
+  /adsImgs:
+    get:
+      operationId: "GetImgsList"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
   /career/intern:
     get:
       operationId: "GetInternInfo"
