@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-11-09T12:25:00Z"
+  version: "2023-11-10T10:31:20Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -619,6 +619,116 @@ paths:
               type: "string"
       security:
       - cognito-authorizer: []
+  /profile:
+    get:
+      operationId: "GetUserProfile"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "uid"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/GetProfileResp"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+    post:
+      operationId: "PostUserProfile"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "PostProfileReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PostProfileReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    delete:
+      operationId: "DeleteUserProfile"
+      parameters:
+      - name: "ts"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
+    options:
+      consumes:
+      - "application/json"
+      responses:
+        "204":
+          description: "204 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+    patch:
+      operationId: "UpdateUseProfile"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "ts"
+        in: "query"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "PatchProfileReq"
+        required: true
+        schema:
+          $ref: "#/definitions/PatchProfileReq"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Referrer-Policy:
+              type: "string"
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Content-Type:
+              type: "string"
+      security:
+      - cognito-authorizer: []
   /syllabus:
     get:
       operationId: "GetCourse"
@@ -859,30 +969,6 @@ definitions:
         - "thread_id"
       message:
         type: "string"
-  PatchReviewReq:
-    type: "object"
-    required:
-    - "data"
-    properties:
-      data:
-        type: "object"
-        properties:
-          difficulty:
-            type: "integer"
-          comment:
-            type: "string"
-          satisfaction:
-            type: "integer"
-          benefit:
-            type: "integer"
-        required:
-        - "benefit"
-        - "comment"
-        - "difficulty"
-        - "satisfaction"
-  Empty:
-    type: "object"
-    title: "Empty Schema"
   PatchThreadReq:
     type: "object"
     required:
@@ -1060,6 +1146,106 @@ definitions:
         - "group_id"
         - "tag_id"
         - "title"
+  PostCommentReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          body:
+            type: "string"
+        required:
+        - "body"
+  GetProfileResp:
+    type: "object"
+    required:
+    - "data"
+    - "message"
+    properties:
+      data:
+        type: "object"
+        properties:
+          uid:
+            type: "string"
+          updated_at:
+            type: "string"
+          year:
+            type: "string"
+          interest:
+            type: "string"
+          school:
+            type: "string"
+          name:
+            type: "string"
+          created_at:
+            type: "string"
+          language:
+            type: "string"
+          class_of:
+            type: "string"
+          email:
+            type: "string"
+        required:
+        - "class_of"
+        - "email"
+        - "language"
+        - "name"
+        - "school"
+        - "uid"
+        - "updated_at"
+        - "year"
+      message:
+        type: "string"
+  PatchProfileReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          body:
+            type: "string"
+        required:
+        - "body"
+  PostProfileReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          body:
+            type: "string"
+        required:
+        - "body"
+  PatchReviewReq:
+    type: "object"
+    required:
+    - "data"
+    properties:
+      data:
+        type: "object"
+        properties:
+          difficulty:
+            type: "integer"
+          comment:
+            type: "string"
+          satisfaction:
+            type: "integer"
+          benefit:
+            type: "integer"
+        required:
+        - "benefit"
+        - "comment"
+        - "difficulty"
+        - "satisfaction"
+  Empty:
+    type: "object"
+    title: "Empty Schema"
   GetSyllabusResp:
     title: "Syllabus"
     type: "array"
@@ -1272,18 +1458,6 @@ definitions:
         - "title_jp"
         - "year"
   PatchCommentReq:
-    type: "object"
-    required:
-    - "data"
-    properties:
-      data:
-        type: "object"
-        properties:
-          body:
-            type: "string"
-        required:
-        - "body"
-  PostCommentReq:
     type: "object"
     required:
     - "data"
