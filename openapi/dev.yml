@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-11-11T11:13:11Z"
+  version: "2023-11-11T11:35:37Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -1169,14 +1169,12 @@ definitions:
       data:
         type: "object"
         properties:
-          uid:
-            type: "string"
           updated_at:
             type: "string"
           year:
             type: "string"
           interest:
-            type: "string"
+            type: "array"
           school:
             type: "string"
           name:
@@ -1184,7 +1182,7 @@ definitions:
           created_at:
             type: "string"
           language:
-            type: "string"
+            type: "array"
           class_of:
             type: "string"
           email:
@@ -1195,7 +1193,6 @@ definitions:
         - "language"
         - "name"
         - "school"
-        - "uid"
         - "updated_at"
         - "year"
       message:
@@ -1208,10 +1205,32 @@ definitions:
       data:
         type: "object"
         properties:
-          body:
+          updated_at:
+            type: "string"
+          year:
+            type: "string"
+          interest:
+            type: "array"
+          school:
+            type: "string"
+          name:
+            type: "string"
+          created_at:
+            type: "string"
+          language:
+            type: "array"
+          class_of:
+            type: "string"
+          email:
             type: "string"
         required:
-        - "body"
+        - "class_of"
+        - "email"
+        - "language"
+        - "name"
+        - "school"
+        - "updated_at"
+        - "year"
   PostProfileReq:
     type: "object"
     required:
@@ -1220,10 +1239,32 @@ definitions:
       data:
         type: "object"
         properties:
-          body:
+          updated_at:
+            type: "string"
+          year:
+            type: "string"
+          interest:
+            type: "array"
+          school:
+            type: "string"
+          name:
+            type: "string"
+          created_at:
+            type: "string"
+          language:
+            type: "array"
+          class_of:
+            type: "string"
+          email:
             type: "string"
         required:
-        - "body"
+        - "class_of"
+        - "email"
+        - "language"
+        - "name"
+        - "school"
+        - "updated_at"
+        - "year"
   PatchReviewReq:
     type: "object"
     required:
