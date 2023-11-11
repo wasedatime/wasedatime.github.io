@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-11-11T11:35:37Z"
+  version: "2023-11-11T11:51:20Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -1173,8 +1173,6 @@ definitions:
             type: "string"
           year:
             type: "string"
-          interest:
-            type: "array"
           school:
             type: "string"
           name:
@@ -1183,14 +1181,25 @@ definitions:
             type: "string"
           language:
             type: "array"
+            items:
+              type: "object"
+              properties:
+                level:
+                  type: "string"
+                language:
+                  type: "string"
           class_of:
             type: "string"
+          interests:
+            type: "array"
+            items:
+              type: "string"
           email:
             type: "string"
         required:
         - "class_of"
         - "email"
-        - "language"
+        - "interests"
         - "name"
         - "school"
         - "updated_at"
@@ -1205,31 +1214,36 @@ definitions:
       data:
         type: "object"
         properties:
-          updated_at:
-            type: "string"
+          languages:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                level:
+                  type: "string"
+                language:
+                  type: "string"
           year:
             type: "string"
-          interest:
-            type: "array"
           school:
             type: "string"
           name:
             type: "string"
-          created_at:
-            type: "string"
-          language:
-            type: "array"
           class_of:
             type: "string"
+          interests:
+            type: "array"
+            items:
+              type: "string"
           email:
             type: "string"
         required:
         - "class_of"
         - "email"
-        - "language"
+        - "interests"
+        - "languages"
         - "name"
         - "school"
-        - "updated_at"
         - "year"
   PostProfileReq:
     type: "object"
@@ -1239,31 +1253,36 @@ definitions:
       data:
         type: "object"
         properties:
-          updated_at:
-            type: "string"
+          languages:
+            type: "array"
+            items:
+              type: "object"
+              properties:
+                level:
+                  type: "string"
+                language:
+                  type: "string"
           year:
             type: "string"
-          interest:
-            type: "array"
           school:
             type: "string"
           name:
             type: "string"
-          created_at:
-            type: "string"
-          language:
-            type: "array"
           class_of:
             type: "string"
+          interests:
+            type: "array"
+            items:
+              type: "string"
           email:
             type: "string"
         required:
         - "class_of"
         - "email"
-        - "language"
+        - "interests"
+        - "languages"
         - "name"
         - "school"
-        - "updated_at"
         - "year"
   PatchReviewReq:
     type: "object"
