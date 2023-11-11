@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "The main API endpoint for WasedaTime Web App."
-  version: "2023-11-11T14:06:12Z"
+  version: "2023-11-11T14:51:30Z"
   title: "wasedatime-rest-api"
 host: "api.wasedatime.com"
 basePath: "/staging"
@@ -624,11 +624,6 @@ paths:
       operationId: "GetUserProfile"
       produces:
       - "application/json"
-      parameters:
-      - name: "uid"
-        in: "query"
-        required: false
-        type: "string"
       responses:
         "200":
           description: "200 response"
@@ -671,11 +666,6 @@ paths:
       - cognito-authorizer: []
     delete:
       operationId: "DeleteUserProfile"
-      parameters:
-      - name: "ts"
-        in: "query"
-        required: true
-        type: "string"
       responses:
         "200":
           description: "200 response"
@@ -708,10 +698,6 @@ paths:
       consumes:
       - "application/json"
       parameters:
-      - name: "ts"
-        in: "query"
-        required: true
-        type: "string"
       - in: "body"
         name: "PatchProfileReq"
         required: true
